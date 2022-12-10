@@ -13,18 +13,20 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 def main():   
-    st.title("Social_Network_Ads_Purchas")
+    st.title("Social_Network_Ads_Purchase")
     st.sidebar.title("Binary Classification Web App")
-    st.markdown("Are clinet purchased or not? ")
-    st.sidebar.markdown("Are clinet purchased or not? ")
+    st.markdown("Are client purchased or not? ")
+    st.sidebar.markdown("Are client purchased or not? ")
 
     @st.cache(persist=True)
     def load_data():
         filePath="Social_Network_Ads.csv" 
         data=pd.read_csv(filePath)
-        data['Gender']=pd.get_dummies(data["Gender"])
-        
-        #print(data)
+        #data['Gender']=pd.get_dummies(data["Gender"])
+        #a = pd.get_dummies(data["Gender"])
+        data.Gender[data.Gender == 'Male'] = 1
+        data.Gender[data.Gender == 'Female'] = 0
+        print(data)
         return data
 
     @st.cache(persist=True)
